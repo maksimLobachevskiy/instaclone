@@ -9,7 +9,8 @@ const path = require('path');
 const app = express();
 
 app.use(express.static(path.join(__dirname, './build')));
-
+app.use("/api/users", users);
+app.use("/api/post", posts);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, './build', 'index.html'));
@@ -28,8 +29,7 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }).then(
   () => console.log("Mongo DB successfully connected")
 );
 
-app.use("/api/users", users);
-app.use("/api/post", posts);
+
 
 const port = process.env.PORT || 5000;
 
