@@ -3,7 +3,7 @@ const router = express.Router();
 const Post = require("../../models/Post");
 const isLogged = require("../../middleware/isLogged");
 
-router.post("/", isLogged, (req, res) => {
+router.post("/", (req, res) => {
   res.json({ isLogged: true, user: req.user });
 });
 
@@ -37,7 +37,7 @@ router.post("/postcomment", (req, res) => {
 });
 
 //Получить все комменты поста
-router.get("/:postId/comments", isLogged, (req, res) => {
+router.get("/:postId/comments", (req, res) => {
   Post.findById(req.params.postId, "comments")
     .populate("comments.by", "username userimg _id")
     .exec()
@@ -52,7 +52,7 @@ router.get("/:postId/comments", isLogged, (req, res) => {
 });
 
 //Like post
-router.post("/like", isLogged, (req, res) => {
+router.post("/like", (req, res) => {
   const { postId } = req.body;
   Post.findById(postId, "likes")
     .then((post) => {

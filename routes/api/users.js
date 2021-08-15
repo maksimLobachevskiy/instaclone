@@ -110,7 +110,7 @@ router.get("/allusers", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.post("/user/:username/follow", isLogged, (req, res) => {
+router.post("/user/:username/follow", (req, res) => {
   User.findOne({ username: req.params.username })
     .then((foundUser) => {
       if (!foundUser) {
