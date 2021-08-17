@@ -14,7 +14,7 @@ app.use("/api/post", posts);
 const db = require("./config/keys").mongoURI;
 const uri = process.env.MONGODB_URI;
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }).then(
   () => console.log("Mongo DB successfully connected")
 );
 

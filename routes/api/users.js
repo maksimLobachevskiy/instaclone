@@ -61,15 +61,15 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  const { errors, isValid } = validateLoginInput(req.body);
+  // const { errors, isValid } = validateLoginInput(req.body);
 
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(422).json({ error: "Please enter all fields." });
-  }
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
+  // const { email, password } = req.body;
+  // if (!email || !password) {
+  //   return res.status(422).json({ error: "Please enter all fields." });
+  // }
   User.findOne({ email: email })
     .populate("posts", "url _id")
     .exec()
